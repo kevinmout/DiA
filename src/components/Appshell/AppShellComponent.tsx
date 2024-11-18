@@ -1,27 +1,33 @@
-import { AppShell, useMantineTheme } from "@mantine/core";
+import { AppShell, Burger, Center, Group, Image } from "@mantine/core";
 import { NavbarComponent } from "./components/NavbarComponent";
+import { MantineLogo } from "@mantinex/mantine-logo";
+import Logo from "./components/Logo";
 
 interface Props {
   children: JSX.Element;
 }
 
 export const AppShellComponent = (props: Props) => {
-  const theme = useMantineTheme();
   return (
     <AppShell
-      styles={{
-        main: {
-          background:
-            theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
-        },
+      header={{ height: 60 }}
+      navbar={{
+        breakpoint: "sm",
+        width: { base: 100 },
       }}
-      navbarOffsetBreakpoint="sm"
-      asideOffsetBreakpoint="sm"
-      navbar={<NavbarComponent />}
+      padding="md"
     >
-      {props.children}
+      <AppShell.Header>
+        <Group h="100%" px="md">
+          <Logo />
+        </Group>
+      </AppShell.Header>
+      <AppShell.Navbar>
+        <Center>
+          <NavbarComponent />
+        </Center>
+      </AppShell.Navbar>
+      <AppShell.Main>{props.children}</AppShell.Main>
     </AppShell>
   );
 };

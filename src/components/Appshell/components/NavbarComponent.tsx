@@ -1,49 +1,10 @@
 import { useContext, useState } from "react";
-import {
-  Navbar,
-  Center,
-  Tooltip,
-  UnstyledButton,
-  createStyles,
-  Stack,
-  Image,
-} from "@mantine/core";
-import { Icon as TablerIcon, IconHome2 } from "@tabler/icons-react";
+import { AppShell, Stack, Tooltip, UnstyledButton } from "@mantine/core";
+import { TablerIcon, IconHome2, IconLogout } from "@tabler/icons-react";
 import { DarkLightButton } from "./DarkLightButton";
 import { DataContext } from "../../../context/provider/DataProvider";
-
-const useStyles = createStyles((theme) => ({
-  link: {
-    width: 70,
-    height: 70,
-    borderRadius: theme.radius.md,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
-
-    "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[5]
-          : theme.colors.gray[0],
-    },
-  },
-
-  active: {
-    "&, &:hover": {
-      backgroundColor: theme.fn.variant({
-        variant: "light",
-        color: theme.primaryColor,
-      }).background,
-      color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
-        .color,
-    },
-  },
-}));
+import clsx from "clsx";
+import styles from "./NavbarComponent.styles.module.css";
 
 interface NavbarLinkProps {
   icon: TablerIcon;
@@ -62,7 +23,6 @@ function NavbarLink({
   setPage,
   to,
 }: NavbarLinkProps) {
-  const { classes, cx } = useStyles();
   return (
     <Tooltip label={label} position="right">
       <UnstyledButton
@@ -70,7 +30,7 @@ function NavbarLink({
           setPage(to);
           if (onClick) onClick();
         }}
-        className={cx(classes.link, { [classes.active]: active })}
+        className={clsx(styles.link, { [styles.active]: active })}
       >
         <Icon stroke={1.5} />
       </UnstyledButton>
@@ -78,9 +38,12 @@ function NavbarLink({
   );
 }
 
-const mockdata = [{ icon: IconHome2, label: "Home", to: "home" }];
+const mockdata = [
+  { icon: IconHome2, label: "Home", to: "home" },
+  { icon: IconLogout, label: "Damage Report", to: "damage-report" },
+];
 
-export const NavbarComponent = () => {
+export function NavbarComponent() {
   const { setPage } = useContext(DataContext);
 
   const [active, setActive] = useState(0);
@@ -97,24 +60,15 @@ export const NavbarComponent = () => {
   ));
 
   return (
-    <Navbar width={{ base: 100 }} p="md">
-      <Center>
-        <Image
-          src={"./images/kleurrijkwonen.jpg"}
-          alt="loading"
-          style={{ borderRadius: "50%" }}
-        />
-      </Center>
-      <Navbar.Section grow mt={50}>
-        <Stack justify="center" spacing={0}>
+    <>
+      <AppShell.Section grow mt={50}>
+        <Stack justify="center" align="center" gap={0}>
           {links}
         </Stack>
-      </Navbar.Section>
-      <Navbar.Section>
-        <Stack justify="center" spacing={0}>
+        <Stack justify="center" align="center" gap={0}>
           <DarkLightButton />
         </Stack>
-      </Navbar.Section>
-    </Navbar>
+      </AppShell.Section>
+    </>
   );
-};
+}

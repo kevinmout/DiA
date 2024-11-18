@@ -19,7 +19,7 @@ export const DamageReport = () => {
       </Flex>
       <TextInput label="Street" placeholder="" />
       <TextInput label="City" placeholder="" />
-      <TextInput label="House Number" placeholder="" />
+      <TextInput style={{ width: "70%" }} label="House Number" placeholder="" />
     </Container>
   );
 };
