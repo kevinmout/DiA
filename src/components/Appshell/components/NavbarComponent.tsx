@@ -38,10 +38,7 @@ function NavbarLink({
   );
 }
 
-const mockdata = [
-  { icon: IconHome2, label: "Home", to: "home" },
-  { icon: IconLogout, label: "Damage Report", to: "damage-report" },
-];
+const mockdata = [{ icon: IconHome2, label: "Home", to: "home" }];
 
 export function NavbarComponent() {
   const { setPage } = useContext(DataContext);
@@ -65,9 +62,9 @@ export function NavbarComponent() {
         <Stack justify="center" align="center" gap={0}>
           {links}
         </Stack>
-        <Stack justify="center" align="center" gap={0}>
+        {/* <Stack justify="center" align="center" gap={0}>
           <DarkLightButton />
-        </Stack>
+        </Stack> */}
       </AppShell.Section>
     </>
   );

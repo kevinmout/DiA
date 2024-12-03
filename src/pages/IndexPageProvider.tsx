@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import { AppShellComponent } from "../components/Appshell/AppShellComponent";
 import { DataContext, DataProvider } from "../context/provider/DataProvider";
-import { DamageReport } from "./Home/components/DamageReport";
-import DamageIndicatorApp from "./Home/DamageIndicator";
 import HomePage from "./Home/HomePage";
+import LandLordPage from "./Home/LandLordPage";
 
 export const IndexProvider = () => {
   return (
@@ -21,7 +20,7 @@ const IndexPage = (): JSX.Element => {
       case "home":
         return <HomePage />;
       case "damage-report":
-        return <DamageReport />;
+        return <LandLordPage />;
       default:
         return <HomePage />;
     }

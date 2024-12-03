@@ -134,6 +134,7 @@ const Canvas = ({
         height: `${containerHeight}px`,
         overflow: "auto", // Enable scrollbars
         border: "1px solid #ccc",
+        backgroundColor: "#f8f9fa",
       }}
     >
       <div
@@ -144,7 +145,7 @@ const Canvas = ({
         }}
       >
         <img
-          src="/images/3d-floor.jpg"
+          src="/images/outside-building.jpg"
           alt="3D Floor"
           style={{
             position: "absolute",
